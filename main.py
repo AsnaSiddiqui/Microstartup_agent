@@ -162,7 +162,23 @@ async def start_chat():
 async def on_message(message: cl.Message):
     await cl.Message(content="Please wait, generating your startup idea...").send()
 
-    prompt = f"""
+    user_input = message.content.lower()
+
+    if any(word in user_input for word in ["hi", "hello", "hey", "who are you", "what can you do"]):
+        prompt = """
+You are MicroStartup Agent, created by Asna.
+
+Your job is to help users come up with micro-startup ideas based on their skills, available time, and work preference.
+
+Introduce yourself briefly and ask the user to tell:
+1. Their main skill
+2. How many hours per week they can give
+3. Whether they prefer online or offline work
+
+Keep your tone friendly and helpful.
+"""
+    else:
+        prompt = f"""
 You're a professional startup advisor AI.
 
 The user wants to start a micro-startup based on their own skills.
