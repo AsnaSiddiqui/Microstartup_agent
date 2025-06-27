@@ -16,9 +16,10 @@ provider = AsyncOpenAI(
 )
 
 model = OpenAIChatCompletionsModel(
-    model="openai/gpt-3.5-turbo",
+    model="mistralai/mistral-7b-instruct",  
     openai_client=provider,
 )
+
 
 # Tools
 @function_tool
